@@ -1,21 +1,104 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кликер</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>За КПСС</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game">
-        <h1>Кликер</h1>
-        <p>Очки: <span id="score">0</span></p>
-        <button id="clickButton">Кликни меня!</button>
-        <div class="upgrades">
-            <button id="upgrade1">Улучшение 1 (10 очков)</button>
-            <button id="upgrade2">Улучшение 2 (50 очков)</button>
+    <div class="header">
+        <h1>Продвигаем коммунизм!!</h1>
+        <div class="resource-total">Общее кол-во продукции: <span id="total-production">0</span>/сек</div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="resources">Ресурсы</div>
+        <div class="tab" data-tab="upgrades">Улучшения</div>
+    </div>
+
+    <div id="resources-tab" class="tab-content active">
+        <div class="resources">
+            <div class="resource-card">
+                <div class="resource-name">Картошка 🥔</div>
+                <div class="resource-count"><span id="potatoes">0</span></div>
+                <div class="resource-rate"><span id="potatoes-rate">0</span>/сек</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-name">Земли 🌱</div>
+                <div class="resource-count"><span id="land">0</span></div>
+                <div class="resource-rate"><span id="land-rate">0</span>/сек</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-name">Рабочие 👷</div>
+                <div class="resource-count"><span id="workers">0</span></div>
+                <div class="resource-rate"><span id="workers-rate">0</span>/сек</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-name">Заводы 🏭</div>
+                <div class="resource-count"><span id="factories">0</span></div>
+                <div class="resource-rate"><span id="factories-rate">0</span>/сек</div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="collect-potatoes" class="action-button">
+                <span>Купить картошку</span>
+                <span>+<span id="potatoes-per-click">1</span></span>
+            </button>
+            <button id="buy-land" class="action-button disabled">
+                <span>Купить землю</span>
+                <span>Цена: <span id="land-cost">10</span> 🥔</span>
+            </button>
+            <button id="hire-worker" class="action-button disabled">
+                <span>Нанять рабочих</span>
+                <span>Цена: <span id="worker-cost">50</span> 🥔</span>
+            </button>
+            <button id="build-factory" class="action-button disabled">
+                <span>Построить завод</span>
+                <span>Цена: <span id="factory-cost">200</span> 🥔</span>
+            </button>
         </div>
     </div>
+
+    <div id="upgrades-tab" class="tab-content">
+        <div class="upgrades">
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <div class="upgrade-name">Улучшенные лопаты</div>
+                    <div class="upgrade-description">x2 кол-во картошек за клик</div>
+                    <div class="upgrade-cost">Цена: 100 🥔</div>
+                </div>
+                <button id="upgrade-shovels" class="upgrade-button disabled">Купить</button>
+            </div>
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <div class="upgrade-name">Улучшенные удобрения земли</div>
+                    <div class="upgrade-description">Земля даёт x2 больше картошки</div>
+                    <div class="upgrade-cost">Цена: 250 🥔</div>
+                </div>
+                <button id="upgrade-farming" class="upgrade-button disabled">Купить</button>
+            </div>
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <div class="upgrade-name">Обучение рабочих</div>
+                    <div class="upgrade-description">Рабочие эффективнее x2</div>
+                    <div class="upgrade-cost">Цена: 500 🥔</div>
+                </div>
+                <button id="upgrade-workers" class="upgrade-button disabled">Купить</button>
+            </div>
+            <div class="upgrade-card">
+                <div class="upgrade-info">
+                    <div class="upgrade-name">Автоматизация фабрик</div>
+                    <div class="upgrade-description">Фабрики выпускают в 2 раза больше рабочих</div>
+                    <div class="upgrade-cost">Цена: 1000 🥔</div>
+                </div>
+                <button id="upgrade-factories" class="upgrade-button disabled">Купить</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
